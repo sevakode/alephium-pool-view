@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-    dd();
+    $blocs=\App\Models\Block::all();
+    dd($blocs);
     return view('welcome');
 });
