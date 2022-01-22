@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $blocs=\App\Models\Block::all();
-    dd($blocs);
+
     return view('welcome');
+
 });
+Route::get('/poolrev', [\App\Http\Controllers\BlockController::class, 'foDay']);
