@@ -38,7 +38,7 @@ class BotController extends Controller
                     $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
                 }
-                $text=$balance."\n".$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
+                $text=$balance."\n\n".$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
             } elseif ($message['text'] == "/stats") {
                 $stats = $this->statsPool();
 
@@ -68,9 +68,9 @@ class BotController extends Controller
                         $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
                     }
-                    $text=$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
+                    $text=$balance."\n\n".$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
 
-                    $telegram->sendMessage($message['from']['id'], $balance . "\n\n" . $text);
+                    $telegram->sendMessage($message['from']['id'], $text);
                 } else {
                     $telegram->sendMessage($message['from']['id'], "Я тебя не понимаю");
                 }
