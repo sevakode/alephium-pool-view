@@ -33,12 +33,15 @@ class BotController extends Controller
 
                 }
             }
-            else{
+            elseif($message['text']=="/stats"){
                 $stats=Share::stats();
                 $stats['day']=$stats['day']/1000;
                 $stats['hour']=$stats['hour']/1000;
 
                 $text="Хешрейт за 24 часа: ".$stats['day']."GH/s\nХешрейт за 1 час: ".$stats['hour']."GH/s";
+            }
+            else{
+                $text="Я тебя не понимаю";
             }
             $telegram->sendMessage($message['from']['id'],$text);
 
