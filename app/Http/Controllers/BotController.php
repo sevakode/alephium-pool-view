@@ -44,8 +44,8 @@ class BotController extends Controller
 
                 $text = "Хешрейт пула за 24 часа: " . $stats['hash']['day'] .
                     "GH/s\nХешрейт пула за 1 час: " . $stats['hash']['hour'] .
-                    "GH/s\n Получено блоков за 24 часа: " . $stats['revenue']['day']['count'] .
-                    "\n Получено блоков за 1 час: " . $stats['revenue']['hour']['count'];
+                    "GH/s\nПолучено блоков за 24 часа: " . $stats['revenue']['day']['count'] .
+                    "\nПолучено блоков за 1 час: " . $stats['revenue']['hour']['count'];
             } else {
                 $text = "Я тебя не понимаю";
             }
