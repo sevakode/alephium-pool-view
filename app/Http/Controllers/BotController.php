@@ -10,6 +10,7 @@ class BotController extends Controller
     //
     public function init(Request $request){
         $telegram=new TelegramSender();
-        $telegram->sendMessage('689839038',$request);
+        $resp=$telegram->sendMessage('689839038',$request->all());
+        dd($resp);
     }
 }

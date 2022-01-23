@@ -11,7 +11,7 @@ class TelegramSender
     const BASE_URL = "https://api.telegram.org/bot";
 
     function __construct () {
-        $this->website = self::BASE_URL.env('telegram_token');
+        $this->website = self::BASE_URL.env('TELEGRAM_TOKEN');
     }
 
     public function sendMessage($chatId, $message)
@@ -20,7 +20,6 @@ class TelegramSender
             'chat_id' => $chatId,
             'text' => $message,
         ];
-
         return Http::post($this->website . '/sendMessage', $params)->json();
     }
 }
