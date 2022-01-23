@@ -20,6 +20,8 @@ class BotController extends Controller
         if($farmer){
             if($message['text']=="/stats"){
                 $stats=$farmer->stats();
+                $balance=$farmer->balance();
+                $balance= "Баланс на кошельке: ".$balance['ALPH']." ALPH 🅰️ ≈ ".$balance['USD']." USD 💵 ";
 
                 if($stats['day']>1000){
                     $stats['day']=$stats['day']/1000;
@@ -31,7 +33,7 @@ class BotController extends Controller
                     $text="Хешрейт за 24 часа: ".$stats['day']."Mh/s\nХешрейт за 1 час: ".$stats['hour']."Mh/s";
 
                 }
-                $telegram->sendMessage($message['from']['id'],$text);
+                $telegram->sendMessage($message['from']['id'],$balance."\n\n".$text);
             }
             else{
                 $telegram->sendMessage($message['from']['id'],"Я тебя не понимаю");
