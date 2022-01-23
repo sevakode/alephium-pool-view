@@ -12,26 +12,26 @@ class BotController extends Controller
     //
     public function init(Request $request){
         $telegram=new TelegramSender();
-        $farmer=Farmer::where('telegram_id',$request->from->id)->first();
+        $farmer=Farmer::where('telegram_id',$request->message['from']['id'])->get()->first();
         if($farmer){
           if($request->message->text=="/stats"){
               $stats=$farmer->stats();
-              $telegram->sendMessage($request->from->id,$stats);
+              $telegram->sendMessage($request->message['from']['id'],$stats);
           }
           else{
-              $telegram->sendMessage($request->from->id,"Я тебя не понимаю");
+              $telegram->sendMessage($request->message['from']['id'],"Я тебя не понимаю");
           }
         }
         else{
-            $shares=Share::where('worker',$request->message->text)->first();
+            $shares=Share::where('worker',$request->message['text'])->first();
             if($shares){
                 $farmer=new Farmer ();
-                $farmer->telegram_id=$request->from->id;
-                $farmer->address=$request->message->text;
+                $farmer->telegram_id=$request->message['from']['id'];
+                $farmer->address=$request->message['text'];
                 $farmer->save();
             }
             else{
-               $telegram->sendMessage($request->from->id,"Введите номер кошелька");
+               $telegram->sendMessage($request->message['from']['id'],"Введите номер кошелька");
             }
         }
     }

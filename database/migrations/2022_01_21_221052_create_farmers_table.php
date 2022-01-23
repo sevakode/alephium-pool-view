@@ -15,8 +15,8 @@ class CreateFarmersTable extends Migration
     {
         Schema::create('farmers', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->string('telegram_id');
+            $table->string('address')->nullable();
+            $table->string('telegram_id')->nullable();
 
             $table->timestamps();
         });
