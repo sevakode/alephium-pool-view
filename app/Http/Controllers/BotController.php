@@ -14,8 +14,9 @@ class BotController extends Controller
         $telegram=new TelegramSender();
 
         $message=$request->get('message');
-//        $telegram->sendMessage($message['from']['id'],$message);
-        if(in_array(['689839038'],$message['from']['id'])){
+        if(in_array($message['from']['id'],['689839038','762177209'])){
+//            $telegram->sendMessage($message['from']['id'],$message);
+
             $farmer=Farmer::where('address',$message['text'])->get()->first();
 
             if($farmer){
