@@ -14,11 +14,11 @@ class Farmer extends Model
         $date_toHour = clone $date_from;
 
         $date_from->subSeconds(86400);
-        $shares = \App\Models\Share::where('worker', $this->worker)->whereBetween('created_date', [$date_from, $date_toDay])->get();
+        $shares = \App\Models\Share::where('worker', $this->address)->whereBetween('created_date', [$date_from, $date_toDay])->get();
         $hashrate = $shares->sum('pool_diff');
         $hashrateDay = $hashrate* 16 * pow(2,30) / 86400;
 
-        $shares = \App\Models\Share::where('worker', $this->worker)->whereBetween('created_date', [$date_from, $date_toHour])->get();
+        $shares = \App\Models\Share::where('worker', $this->address)->whereBetween('created_date', [$date_from, $date_toHour])->get();
         $hashrate = $shares->sum('pool_diff');
         $hashrateHour= $hashrate* 16 * pow(2,30) / 3600;
 
