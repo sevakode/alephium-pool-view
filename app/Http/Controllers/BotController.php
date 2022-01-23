@@ -14,14 +14,25 @@ class BotController extends Controller
         $telegram=new TelegramSender();
 
         $message=$request->get('message');
-        $telegram->sendMessage($message['from']['id'],$message);
+//        $telegram->sendMessage($message['from']['id'],$message);
 
         $farmer=Farmer::where('telegram_id',$message['from']['id'])->get()->first();
 
         if($farmer){
           if($message['text']=="/stats"){
               $stats=$farmer->stats();
-              $telegram->sendMessage($message['from']['id'],$stats);
+
+              if($stats['day']>1000){
+                  $stats['day']=$stats['day']/1000;
+                  $stats['hour']=$stats['hour']/1000;
+
+                  $text="Хешрейт за 24 часа: ".$stats['day']."GH/s\nХешрейт за 1 час: ".$stats['hour']."GH/s";
+              }
+              else{
+                  $text="Хешрейт за 24 часа: ".$stats['day']."Mh/s\nХешрейт за 1 час: ".$stats['hour']."Mh/s";
+
+              }
+              $telegram->sendMessage($message['from']['id'],$text);
           }
           else{
               $telegram->sendMessage($message['from']['id'],"Я тебя не понимаю");

@@ -10,18 +10,20 @@ class Farmer extends Model
     use HasFactory;
     public function stats(){
         $date_from = \Carbon\Carbon::now();
-        $date_toDay = clone $date_from;
-        $date_toHour = clone $date_from;
+        $date_to = clone $date_from;
+        $date_fromHour = clone $date_from;
 
+        $date_fromHour->subSeconds(3600);
         $date_from->subSeconds(86400);
-        $shares = \App\Models\Share::where('worker', $this->address)->whereBetween('created_date', [$date_from, $date_toDay])->get();
+
+        $shares = \App\Models\Share::where('worker', $this->address)->whereBetween('created_date', [$date_from, $date_to])->get();
         $hashrate = $shares->sum('pool_diff');
         $hashrateDay = $hashrate* 16 * pow(2,30) / 86400;
 
-        $shares = \App\Models\Share::where('worker', $this->address)->whereBetween('created_date', [$date_from, $date_toHour])->get();
+        $shares = \App\Models\Share::where('worker', $this->address)->whereBetween('created_date', [$date_fromHour, $date_to])->get();
         $hashrate = $shares->sum('pool_diff');
-        $hashrateHour= $hashrate* 16 * pow(2,30) / 3600;
+        $hashrateHour = $hashrate * 16 * pow(2,30) / 3600;
 
-        return ['day'=>$hashrateDay/1000000,'hour'=>$hashrateHour] ;
+        return ['day'=>round($hashrateDay/1000000),'hour'=>round($hashrateHour/1000000)] ;
     }
 }
