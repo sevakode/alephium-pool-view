@@ -20,7 +20,7 @@ class BotController extends Controller
         $message = $request->get('message');
 
 
-        if (in_array($message['from']['id'], ['689839038', '762177209'])) {
+        if (in_array($message['from']['id'], ['689839038', '762177209','1463023485'])) {
 //            $telegram->sendMessage($message['from']['id'],$message);
 
             $stats = $this->stats($message['text']);
