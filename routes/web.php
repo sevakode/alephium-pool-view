@@ -18,7 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 
 });
-Route::get('/pool_rev', [\App\Http\Controllers\BlockController::class, 'forDay']);
-Route::get('/shares_day', [\App\Http\Controllers\ShareController::class, 'forDayPool']);
-Route::get('/shares_hour', [\App\Http\Controllers\ShareController::class, 'forHourPool']);
+Route::get('/stats', [\App\Http\Controllers\BotController::class, 'statsPool']);
 Route::get('/balance/{address}', [\App\Http\Controllers\FarmerController::class, 'balance']);
