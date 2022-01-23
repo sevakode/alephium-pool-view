@@ -17,11 +17,9 @@ class BotController extends Controller
         if(in_array($message['from']['id'],['689839038','762177209'])){
 //            $telegram->sendMessage($message['from']['id'],$message);
 
-            $farmer=Farmer::where('address',$message['text'])->get()->first();
+            $stats=Share::stats($message['text'])->get();
 
-            if($farmer){
-                $stats=$farmer->stats();
-
+            if($stats){
                 if($stats['day']>1000){
                     $stats['day']=$stats['day']/1000;
                     $stats['hour']=$stats['hour']/1000;
@@ -34,7 +32,7 @@ class BotController extends Controller
                 }
             }
             elseif($message['text']=="/stats"){
-                $stats=Share::stats();
+                $stats=Share::statsPool();
                 $stats['day']=$stats['day']/1000;
                 $stats['hour']=$stats['hour']/1000;
 
