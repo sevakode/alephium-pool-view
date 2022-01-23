@@ -17,7 +17,7 @@ class BotController extends Controller
         if(in_array($message['from']['id'],['689839038','762177209'])){
 //            $telegram->sendMessage($message['from']['id'],$message);
 
-            $stats=Share::stats($message['text'])->get();
+            $stats=Share::stats($message['text']);
 
             if($stats){
                 if($stats['day']>1000){
