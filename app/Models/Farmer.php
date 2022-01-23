@@ -40,6 +40,10 @@ class Farmer extends Model
 
         $rates = json_decode($rates->body());
         $balance = json_decode($balance);
-        return ['ALPH' => $balance, 'USD' => $balance * $rates->current_price];
+        $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
+        $balance=round($balance, 4);
+
+        $usd=round($balance * $rates[0]->current_price, 4);
+        return ['ALPH' => $balance, 'USD' =>$usd ];
     }
 }
