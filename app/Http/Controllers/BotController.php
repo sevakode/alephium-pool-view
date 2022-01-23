@@ -33,11 +33,12 @@ class BotController extends Controller
                     $stats['day'] = $stats['day'] / 1000;
                     $stats['hour'] = $stats['hour'] / 1000;
 
-                    $text = $balance."\n Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
+                    $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
                 } else {
-                    $text = $balance."\n Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
+                    $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
                 }
+                $text=$balance."\n".$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
             } elseif ($message['text'] == "/stats") {
                 $stats = $this->statsPool();
 
@@ -67,6 +68,8 @@ class BotController extends Controller
                         $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
                     }
+                    $text=$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
+
                     $telegram->sendMessage($message['from']['id'], $balance . "\n\n" . $text);
                 } else {
                     $telegram->sendMessage($message['from']['id'], "Я тебя не понимаю");
