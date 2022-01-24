@@ -22,4 +22,8 @@ class TelegramSender
         ];
         return Http::post($this->website . '/sendMessage', $params)->json();
     }
+    public function getUpdates($chatId): \Illuminate\Http\Client\Response
+    {
+        return Http::post($this->website . '/getUpdates');
+    }
 }
