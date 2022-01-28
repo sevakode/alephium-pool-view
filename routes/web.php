@@ -20,5 +20,6 @@ Route::get('/', function () {
 });
 Route::get('/stats', [\App\Http\Controllers\BotController::class, 'statsPool']);
 Route::get('/stats/{address}', [\App\Http\Controllers\BotController::class, 'stats']);
+Route::get('/history/{address}', [\App\Http\Controllers\BotController::class, 'history']);
 
 Route::get('/balance/{address}', [\App\Http\Controllers\FarmerController::class, 'balance']);

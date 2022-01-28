@@ -25,25 +25,27 @@ class NodeService
 
     public function balance($address)
     {
-        $ch = curl_init();
 
         $url = $this->getFullUrl('addresses')."/$address/balance";
-        $optArray = array(
-            CURLOPT_HTTPHEADER => array(
-                'X-API-KEY: '.$this->getToken(),
-                'Content-Type: application/json'
-            ),
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true
-        );
 
-        curl_setopt_array($ch, $optArray);
-        $result = curl_exec($ch);
-        curl_close($ch);
 
-        return $result;
+        return $this->get($url);
+    }
+    public function utxos($address)
+    {
+
+        $url = $this->getFullUrl('addresses')."/$address/utxos";
+
+
+        return $this->get($url);
     }
 
+    public function hashrate()
+    {
+        $url = $this->getFullUrl('infos')."/current-hashrate";
+
+        return $this->get($url);
+    }
 
 
     public function getFullUrl(string $method): string
@@ -81,5 +83,23 @@ class NodeService
     public function setToken(string $token): void
     {
         $this->token = $token;
+    }
+    public function get($url)
+    {
+        $ch = curl_init();
+        $optArray = array(
+            CURLOPT_HTTPHEADER => array(
+                'X-API-KEY: '.$this->getToken(),
+                'Content-Type: application/json'
+            ),
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true
+        );
+
+        curl_setopt_array($ch, $optArray);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return $result;
     }
 }

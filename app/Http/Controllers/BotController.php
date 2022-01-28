@@ -178,4 +178,12 @@ class BotController extends Controller
         }
 
     }
+    public function history($address)
+    {
+        $nodeService = NodeService::make();
+        $utxos = $nodeService->utxos($address);
+
+        return $utxos;
+
+    }
 }
