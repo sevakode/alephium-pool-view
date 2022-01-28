@@ -24,21 +24,28 @@ class BotController extends Controller
         if (in_array($message['from']['id'], ['689839038', '762177209', '1463023485'])) {
 //            $telegram->sendMessage($message['from']['id'],$message);
 
-            $stats = $this->stats($message['text']);
+            $balance = $this->balance($message['text']);
 
-            if ($stats) {
-                $balance = $this->balance($message['text']);
+
+            if ($balance) {
                 $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
 
-                if ($stats['day'] > 1000) {
-                    $stats['day'] = $stats['day'] / 1000;
-                    $stats['hour'] = $stats['hour'] / 1000;
+                $stats = $this->stats($message['text']);
+                if($stats){
+                    if ($stats['day'] > 1000) {
+                        $stats['day'] = $stats['day'] / 1000;
+                        $stats['hour'] = $stats['hour'] / 1000;
 
-                    $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
-                } else {
-                    $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
+                        $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
+                    } else {
+                        $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
+                    }
                 }
+                else{
+                    $text='Воркер не в сети';
+                }
+
                 $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
             } elseif ($message['text'] == "/stats") {
                 $stats = $this->statsPool();
@@ -59,21 +66,15 @@ class BotController extends Controller
                     $stats = $this->stats($farmer->address);
                     $balance = $this->balance($farmer->address);
                     $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
-                    if($stats){
-                        if ($stats['day'] > 1000) {
-                            $stats['day'] = $stats['day'] / 1000;
-                            $stats['hour'] = $stats['hour'] / 1000;
+                    if ($stats['day'] > 1000) {
+                        $stats['day'] = $stats['day'] / 1000;
+                        $stats['hour'] = $stats['hour'] / 1000;
 
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
-                        } else {
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
+                        $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
+                    } else {
+                        $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
-                        }
                     }
-                    else{
-                        $text="Воркер не в сети";
-                    }
-
                     $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
 
                     $telegram->sendMessage($message['from']['id'], $text);
@@ -153,11 +154,18 @@ class BotController extends Controller
 
         $rates = json_decode($rates->body());
         $balance = json_decode($balance);
-        $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
-        $balance = round($balance, 4);
+        if (isset($balance->balanceHint)){
+            $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
+            $balance = round($balance, 4);
 
-        $usd = round($balance * $rates[0]->current_price, 4);
-        return ['ALPH' => $balance, 'USD' => $usd];
+            $usd = round($balance * $rates[0]->current_price, 4);
+            return ['ALPH' => $balance, 'USD' => $usd];
+        }
+        else {
+            return null;
+
+        }
+
     }
 
     public function stats($address)
