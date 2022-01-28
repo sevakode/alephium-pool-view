@@ -21,7 +21,7 @@ class BotController extends Controller
         $message = $request->get('message');
 
 
-        if (in_array($message['from']['id'], ['689839038', '762177209','1463023485'])) {
+        if (in_array($message['from']['id'], ['689839038', '762177209', '1463023485'])) {
 //            $telegram->sendMessage($message['from']['id'],$message);
 
             $stats = $this->stats($message['text']);
@@ -39,7 +39,7 @@ class BotController extends Controller
                     $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
                 }
-                $text=$balance."\n\n".$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
+                $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
             } elseif ($message['text'] == "/stats") {
                 $stats = $this->statsPool();
 
@@ -69,7 +69,7 @@ class BotController extends Controller
                         $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
 
                     }
-                    $text=$balance."\n\n".$text."\n\nВсе операции: https://explorer.alephium.org/#/addresses/".$message['text'];
+                    $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
 
                     $telegram->sendMessage($message['from']['id'], $text);
                 } else {
@@ -138,6 +138,7 @@ class BotController extends Controller
             ]
         ];
     }
+
     public function balance($address)
     {
         $nodeService = NodeService::make();
@@ -148,11 +149,12 @@ class BotController extends Controller
         $rates = json_decode($rates->body());
         $balance = json_decode($balance);
         $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
-        $balance=round($balance, 4);
+        $balance = round($balance, 4);
 
-        $usd=round($balance * $rates[0]->current_price, 4);
-        return ['ALPH' => $balance, 'USD' =>$usd ];
+        $usd = round($balance * $rates[0]->current_price, 4);
+        return ['ALPH' => $balance, 'USD' => $usd];
     }
+
     public function stats($address)
     {
         $date_from = \Carbon\Carbon::now();
@@ -173,21 +175,21 @@ class BotController extends Controller
 
             return ['day' => round($hashrateDay / 1000000), 'hour' => round($hashrateHour / 1000000)];
 
-        }
-        else{
+        } else {
             return null;
         }
 
     }
-public function history($address,$ethash)
+
+    public function history($address, $ethash=500)
     {
 
-        $rate=Http::get('https://www.coincalculators.io/api',[
-            'hashrate'=>$ethash*1000000,
-            'name'=>'Ethereum'
+        $rate = Http::get('https://www.coincalculators.io/api', [
+            'hashrate' => $ethash * 1000000,
+            'name' => 'Ethereum'
         ]);
-        $now=Carbon::now();
-        $yesterday= clone $now;
+        $now = Carbon::now();
+        $yesterday = clone $now;
         $yesterday->subDay();
 //        $inMin=$rate->json('rewardsInHour')/60;
         $nodeService = NodeService::make();
