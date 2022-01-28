@@ -26,7 +26,7 @@ class TelegramService
 
     public static function make()
     {
-        return new self("1682010756:AAGZ2ADXezMWVQ76I0626gsdAfK3qEBfIxE");
+        return new self("1774134242:AAH6PXXnNg-M7Hfu7TK5eipm6ajOoIwrjdw");
     }
 
     public function send($chatId, $messageText)
