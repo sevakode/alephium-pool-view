@@ -6,6 +6,7 @@ use App\Http\TelegramSender;
 use App\Models\Farmer;
 use App\Models\Share;
 use App\Services\NodeService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -178,8 +179,17 @@ class BotController extends Controller
         }
 
     }
-    public function history($address)
+public function history($address,$ethash)
     {
+
+        $rate=Http::get('https://www.coincalculators.io/api',[
+            'hashrate'=>$ethash*1000000,
+            'name'=>'Ethereum'
+        ]);
+        $now=Carbon::now();
+        $yesterday= clone $now;
+        $yesterday->subDay();
+//        $inMin=$rate->json('rewardsInHour')/60;
         $nodeService = NodeService::make();
         $utxos = $nodeService->utxos($address);
 

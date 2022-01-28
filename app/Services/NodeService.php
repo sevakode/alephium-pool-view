@@ -34,7 +34,7 @@ class NodeService
     public function utxos($address)
     {
 
-        $url = $this->getFullUrl('addresses')."/$address/utxos";
+        $url = $this->getFullUrl('addresses')."/$address/utxos?utxosLimit=900";
 
 
         return $this->get($url);
