@@ -19,6 +19,7 @@ class BotController extends Controller
         $telegram = new TelegramSender();
 
         $message = $request->get('message');
+
         try {
 
 
@@ -97,8 +98,10 @@ class BotController extends Controller
                 }
 
             }
+            return true;
         }catch (\Exception $exception){
             $telegram->sendMessage($message['from']['id'], $exception->getMessage());
+            return false;
 
         }
 
