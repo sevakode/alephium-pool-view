@@ -62,7 +62,7 @@ class BotController extends Controller
                 return $telegram->sendMessage($message['from']['id'], $text);
 
             } else {
-                $farmer = Farmer::where('telegram_id', $message['from']['id'])->get()->first();
+                $farmer = Farmer::where('telegram_id', $message['from']['id'])->select('address')->get()->first();
                 if ($farmer) {
                     if ($message['text'] == "/stats") {
                         $stats = $this->stats($farmer->address);
@@ -129,21 +129,21 @@ class BotController extends Controller
         $date_from->subSeconds(86400);
 
         $shares = DB::table('shares')
-            ->whereBetween('created_date', [$date_from, $date_to])->get();
+            ->whereBetween('created_date', [$date_from, $date_to])->select('pool_diff')->get();
         $hashrate = $shares->sum('pool_diff');
         $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
 
         $shares = DB::table('shares')
-            ->whereBetween('created_date', [$date_fromHour, $date_to])->get();
+            ->whereBetween('created_date', [$date_fromHour, $date_to])->select('pool_diff')->get();
         $hashrate = $shares->sum('pool_diff');
         $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
 
         $blocksDay = DB::table('blocks')
-            ->whereBetween('created_date', [$date_from, $date_to])->get();
+            ->whereBetween('created_date', [$date_from, $date_to])->select('id')->get();
 
 
         $blocksHour = DB::table('blocks')
-            ->whereBetween('created_date', [$date_fromHour, $date_to])->get();
+            ->whereBetween('created_date', [$date_fromHour, $date_to])->select('id')->get();
 
         return [
             'hash' => ['day' => round($hashrateDay / 1000000000, 3), 'hour' => round($hashrateHour / 1000000000, 3)],
@@ -186,12 +186,12 @@ class BotController extends Controller
         $date_fromHour->subSeconds(3600);
         $date_from->subSeconds(86400);
 
-        $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_from, $date_to])->get();
+        $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_from, $date_to])->select('pool_diff')->get();
         if ($shares->first()) {
             $hashrate = $shares->sum('pool_diff');
             $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
 
-            $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_fromHour, $date_to])->get();
+            $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_fromHour, $date_to])->select('pool_diff')->get();
             $hashrate = $shares->sum('pool_diff');
             $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
 
