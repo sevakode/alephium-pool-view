@@ -26,30 +26,8 @@ class BotController extends Controller
             if (in_array($message['from']['id'], ['689839038', '762177209', '1463023485'])) {
 //            $telegram->sendMessage($message['from']['id'],$message);
 
-                $balance = $this->balance($message['text']);
 
-
-                if ($balance) {
-                    $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
-
-                    $stats = $this->stats($message['text']);
-                    if($stats){
-                        if ($stats['day'] > 1000) {
-                            $stats['day'] = $stats['day'] / 1000;
-                            $stats['hour'] = $stats['hour'] / 1000;
-
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
-                        } else {
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
-
-                        }
-                    }
-                    else{
-                        $text='Воркер не в сети';
-                    }
-
-                    $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
-                } elseif ($message['text'] == "/stats") {
+                if ($message['text'] == "/stats") {
                     $stats = $this->statsPool();
 
                     $text = "Хешрейт пула за 24 часа: " . $stats['hash']['day'] .
@@ -57,7 +35,33 @@ class BotController extends Controller
                         "GH/s\nПолучено блоков за 24 часа: " . $stats['revenue']['day']['count'] .
                         "\nПолучено блоков за 1 час: " . $stats['revenue']['hour']['count'];
                 } else {
-                    $text = "Не найдено";
+                    $balance = $this->balance($message['text']);
+
+                    if ($balance){
+
+                        $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
+
+                        $stats = $this->stats($message['text']);
+                        if ($stats) {
+                            if ($stats['day'] > 1000) {
+                                $stats['day'] = $stats['day'] / 1000;
+                                $stats['hour'] = $stats['hour'] / 1000;
+
+                                $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
+                            } else {
+                                $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
+
+                            }
+                        } else {
+                            $text = 'Воркер не в сети';
+                        }
+
+                        $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
+
+                    }else {
+                        $text = "Не найдено";
+                    }
+
                 }
                 return $telegram->sendMessage($message['from']['id'], $text);
 
@@ -99,7 +103,7 @@ class BotController extends Controller
 
             }
             return true;
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $telegram->sendMessage($message['from']['id'], $exception->getMessage());
             return false;
 
@@ -163,14 +167,13 @@ class BotController extends Controller
 
         $rates = json_decode($rates->body());
         $balance = json_decode($balance);
-        if (isset($balance->balanceHint)){
+        if (isset($balance->balanceHint)) {
             $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
             $balance = round($balance, 4);
 
             $usd = round($balance * $rates[0]->current_price, 4);
             return ['ALPH' => $balance, 'USD' => $usd];
-        }
-        else {
+        } else {
             return null;
 
         }
@@ -203,7 +206,7 @@ class BotController extends Controller
 
     }
 
-    public function history($address, $ethash=500)
+    public function history($address, $ethash = 500)
     {
 
 //        $rate = Http::get('https://www.coincalculators.io/api', [
