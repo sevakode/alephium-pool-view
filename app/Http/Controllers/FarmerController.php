@@ -10,7 +10,8 @@ use function Symfony\Component\String\s;
 
 class FarmerController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 //        $controller=new BotController();
 //        $stats=$controller->statsPool();
 //
@@ -18,11 +19,16 @@ class FarmerController extends Controller
         return view('welcome');
 
     }
-    public function show( $address){
-        $controller=new BotController();
-        $hash=$controller->stats($address);
-        $balance=$controller->balance($address);
 
-        return view('farmer');
+    public function show($address)
+    {
+        $controller = new BotController();
+        $hash = $controller->stats($address);
+        $balance = $controller->balance($address);
+
+        return view('farmer', [
+            'hash' => $hash,
+            'balance'=>$balance
+        ]);
     }
 }
