@@ -833,7 +833,9 @@
 {{--                                                        <span class="text-muted fw-bold text-muted d-block fs-7"></span>--}}
                                                     </td>
                                                     <td>
-                                                        <span class="badge badge-light-success">{{$block->worker}}</span>
+                                                        <a href="{{url('farmers/'.$block->worker)}}"
+                                                           class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$block->worker}}</a>
+
                                                     </td>
                                                     <td class="text-end text-dark fw-bolder text-hover-primary fs-6">
                                                         {{$block->created_date}}
