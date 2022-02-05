@@ -639,7 +639,7 @@
                                                 <div class="text-gray-800  fw-bolder fs-6">Telegram Bot</div>
                                             </div>
                                             <span class="badge badge-light-info fw-bolder"><a class="text-hover-secondary"
-                                                                                              href="https://github.com/trexminer/T-Rex/releases">T-Rex</a></span>
+                                                                                              href="https://t.me/YouPoolBot">@YouPoolBot</a></span>
 
 
                                         </div>
