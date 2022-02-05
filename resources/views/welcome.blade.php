@@ -529,7 +529,7 @@
 															{{$hash['day']}}GH/s
 															</span>
                                                     <!--end::Svg Icon-->
-                                                    <div class="text-primary fw-bold fs-6">Daily hashrate</div>
+                                                        <div class="text-primary fw-bold fs-6">Daily hashrate</div>
                                                 </div>
                                                 <!--end::Col-->
                                                 <!--begin::Col-->
@@ -600,7 +600,7 @@
 
                                             </div>
                                             <span
-                                                class="badge badge-light-success fw-bolder">pool.youcloud.ru:20032</span>
+                                                class="badge badge-light-danger fw-bolder">pool.youcloud.ru:20032</span>
 
                                         </div>
                                         <!--end:Item-->
@@ -612,7 +612,7 @@
                                             <div class="flex-grow-1">
                                                 <div class="text-gray-800 fw-bolder fs-6">Fee</div>
                                             </div>
-                                            <span class="badge badge-light-success fw-bolder">0.8%</span>
+                                            <span class="badge badge-light-danger fw-bolder">0.8%</span>
 
                                         </div>
                                         <div class="d-flex align-items-center mb-8">
