@@ -163,8 +163,8 @@ class BotController extends Controller
             $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
             $balance = round($balance, 4);
 
-            $usd = round($balance * $rates[0]->current_price, 4);
-            return ['ALPH' => $balance, 'USD' => $usd];
+            $usd = round($balance * $rates[0]->current_price, 2);
+            return ['ALPH' => $balance."A", 'USD' => $usd."$"];
         } else {
             return null;
 
