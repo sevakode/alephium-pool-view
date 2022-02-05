@@ -166,7 +166,7 @@
                                                     <div class="col bg-light-primary px-6 py-8 rounded-2">
                                                         <!--begin::Svg Icon | path: icons/duotune/communication/com010.svg-->
                                                         <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
-                                                        {{$balance ?? '' ?? $balance ?? ''['hour']['USD']}}
+                                                        {{$balance ?? '' ?? $balance ?? ''['USD']}}
 
                                                     </span>
                                                         <!--end::Svg Icon-->
