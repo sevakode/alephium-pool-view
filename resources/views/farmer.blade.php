@@ -131,7 +131,7 @@
                                                     <div class="col bg-light-success px-6 py-8 rounded-2 me-7 mb-7">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
                                                         <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-															{{$hash ?? '' ?? $hash ?? ''['day']}}
+															{{$hash['day'] }}
 															</span>
                                                         <!--end::Svg Icon-->
                                                         <div class="text-primary fw-bold fs-6">Daily hashrate</div>
@@ -141,7 +141,7 @@
                                                     <div class="col bg-light-success px-6 py-8 rounded-2 mb-7">
                                                         <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                                                         <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-															{{$hash ?? '' ?? $hash ?? ''['hour']}}
+															{{ $hash['hour']}}
 															</span>
                                                         <!--end::Svg Icon-->
                                                         <div class="text-primary fw-bold fs-6">Hours hashrate</div>
@@ -155,7 +155,7 @@
                                                     <div class="col bg-light-primary px-6 py-8 rounded-2 me-7">
                                                         <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                                         <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
-                                                        {{$balance ?? '' ?? $balance ?? ''['ALPH']}}
+                                                        {{$balance['ALPH']}}
 
 															</span>
                                                         <!--end::Svg Icon-->
@@ -166,7 +166,7 @@
                                                     <div class="col bg-light-primary px-6 py-8 rounded-2">
                                                         <!--begin::Svg Icon | path: icons/duotune/communication/com010.svg-->
                                                         <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
-                                                        {{$balance ?? '' ?? $balance ?? ''['USD']}}
+                                                        {{$balance['USD']}}
 
                                                     </span>
                                                         <!--end::Svg Icon-->
