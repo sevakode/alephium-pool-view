@@ -127,6 +127,18 @@
                             <!--end::Checkbox-->
                             <!--begin::Description-->
                             <div class="flex-grow-1">
+                                <div class="text-gray-800 fw-bolder fs-6">Min payout</div>
+                            </div>
+                            <span class="badge badge-light-success fw-bolder">1 ALPH</span>
+
+                        </div>
+
+                        <div class="d-flex align-items-center mb-8">
+
+
+                            <!--end::Checkbox-->
+                            <!--begin::Description-->
+                            <div class="flex-grow-1">
                                 <div class="text-gray-800  fw-bolder fs-6">Miners</div>
                             </div>
                             <span class="badge badge-light-info fw-bolder"><a class="text-hover-primary"
