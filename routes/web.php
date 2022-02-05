@@ -19,7 +19,7 @@ Route::get('/stats/{address}', [\App\Http\Controllers\BotController::class, 'sta
 Route::get('/history/{address}', [\App\Http\Controllers\BotController::class, 'history']);
 
 Route::post('/search',function (){
-    redirect("/farmers/".request()->address);
+    return redirect("/farmers/".request()->address);
 });
 
 Route::get('/farmers/{address}', [\App\Http\Controllers\FarmerController::class, 'show']);
