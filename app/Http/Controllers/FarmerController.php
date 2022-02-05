@@ -12,11 +12,10 @@ class FarmerController extends Controller
 {
     public function index()
     {
-//        $controller=new BotController();
-//        $stats=$controller->statsPool();
-//
-//        return view('welcome',["blockHour"=>$stats['blockHour'],'hash'=>$stats['hash'],'count'=>$stats['revenue']]);
-        return view('welcome');
+        $controller=new BotController();
+        $stats=$controller->statsPool();
+
+        return view('welcome',["blockHour"=>$stats['blockHour'],'hash'=>$stats['hash'],'count'=>$stats['revenue']]);
 
     }
 
