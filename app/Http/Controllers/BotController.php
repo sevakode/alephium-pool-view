@@ -76,9 +76,9 @@ class BotController extends Controller
                             $stats['day'] = $stats['day'] / 1000;
                             $stats['hour'] = $stats['hour'] / 1000;
 
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
+                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'] ;
                         } else {
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
+                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'] ;
 
                         }
                         $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
@@ -189,8 +189,20 @@ class BotController extends Controller
             $shares = $shares->where('created_date', '>=', $date_fromHour);
             $hashrate = $shares->sum('pool_diff');
             $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
+            $day = round($hashrateDay / 1000000);
+            $hour = round($hashrateHour / 1000000);
+            if ($day > 1000) {
+                $day = $day / 1000;
+                $hour = $hour / 1000;
 
-            return ['day' => round($hashrateDay / 1000000), 'hour' => round($hashrateHour / 1000000)];
+                $hour = $hour . "GH/s";
+                $day = $day .  "GH/s";
+            } else {
+                $hour = $hour  . "Mh/s";
+                $day = $day  . "Mh/s";
+
+            }
+            return ['day' =>$day , 'hour' =>$hour ];
 
         } else {
             return null;
