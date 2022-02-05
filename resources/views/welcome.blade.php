@@ -429,12 +429,15 @@
                         <!--begin::Topbar-->
                         <div class="d-flex align-items-stretch flex-shrink-0">
                             <!--begin::Toolbar wrapper-->
+
                             <div class="d-flex align-items-stretch flex-shrink-0">
+
                                 <!--begin::Search-->
                                 <div class="d-flex align-items-stretch ms-1 ms-lg-3">
                                     <!--begin::Compact form-->
 
-                                    <div class="d-flex align-items-center">
+                                    <form method="POST" action="{{url('search')}}" class="d-flex align-items-center">
+                                        @csrf
                                         <!--begin::Input group-->
                                         <div class="position-relative w-md-400px me-md-2">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
@@ -452,7 +455,7 @@
 													</span>
                                             <!--end::Svg Icon-->
                                             <input type="text" class="form-control form-control-solid ps-10"
-                                                   name="search" value="" placeholder="Search address"/>
+                                                   name="address" value="" placeholder="Search address"/>
                                         </div>
 
                                         <!--end::Input group-->
@@ -461,13 +464,18 @@
                                             <button type="submit" class="btn btn-primary me-5">Search</button>
                                         </div>
                                         <!--end:Action-->
-                                    </div>
+
+
+
+                                    </form>
+
                                     <!--end::Compact form-->
 
                                 </div>
                                 <!--end::Search-->
 
                             </div>
+
                             <!--end::Toolbar wrapper-->
                         </div>
                         <!--end::Topbar-->
@@ -518,7 +526,7 @@
                                                 <div class="col bg-light-success px-6 py-8 rounded-2 me-7 mb-7">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
                                                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-															{{$hash['day']}}
+															{{$hash ?? '' ?? $hash ?? ''['day']}}GH/s
 															</span>
                                                     <!--end::Svg Icon-->
                                                     <div class="text-primary fw-bold fs-6">Daily hashrate</div>
@@ -528,7 +536,7 @@
                                                 <div class="col bg-light-success px-6 py-8 rounded-2 mb-7">
                                                     <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                                                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-															{{$hash['hour']}}
+															{{$hash ?? '' ?? $hash ?? ''['hour']}}GH/s
 															</span>
                                                     <!--end::Svg Icon-->
                                                     <div class="text-primary fw-bold fs-6">Hours hashrate</div>
@@ -542,7 +550,7 @@
                                                 <div class="col bg-light-primary px-6 py-8 rounded-2 me-7">
                                                     <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                                     <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
-                                                        {{$count['day']['count']}}
+                                                        {{$count ?? '' ?? $count ?? ''['day']['count']}}
 
 															</span>
                                                     <!--end::Svg Icon-->
@@ -553,7 +561,7 @@
                                                 <div class="col bg-light-primary px-6 py-8 rounded-2">
                                                     <!--begin::Svg Icon | path: icons/duotune/communication/com010.svg-->
                                                     <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
-                                                        {{$count['hour']['count']}}
+                                                        {{$count ?? '' ?? $count ?? ''['hour']['count']}}
 
                                                     </span>
                                                     <!--end::Svg Icon-->
@@ -620,6 +628,19 @@
 
                                             <span class="badge badge-light-info fw-bolder"><a class="text-hover-primary"
                                                                                               href="https://www.bzminer.com/">BzMiner</a></span>
+
+                                        </div>
+                                        <div class="d-flex align-items-center mb-8">
+
+
+                                            <!--end::Checkbox-->
+                                            <!--begin::Description-->
+                                            <div class="flex-grow-1">
+                                                <div class="text-gray-800  fw-bolder fs-6">Telegram Bot</div>
+                                            </div>
+                                            <span class="badge badge-light-info fw-bolder"><a class="text-hover-secondary"
+                                                                                              href="https://github.com/trexminer/T-Rex/releases">T-Rex</a></span>
+
 
                                         </div>
 
@@ -803,7 +824,7 @@
                                             <!--end::Table head-->
                                             <!--begin::Table body-->
                                             <tbody>
-
+                                            @isset($blockHour)
                                             @foreach($blockHour as $block)
                                                 <tr>
                                                     <td>
@@ -819,7 +840,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-
+                                            @endisset
 
                                             </tbody>
                                             <!--end::Table body-->

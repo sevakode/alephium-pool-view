@@ -37,7 +37,7 @@ class BotController extends Controller
                 } else {
                     $balance = $this->balance($message['text']);
 
-                    if ($balance){
+                    if ($balance) {
 
                         $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
 
@@ -58,7 +58,7 @@ class BotController extends Controller
 
                         $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
 
-                    }else {
+                    } else {
                         $text = "Не найдено";
                     }
 
@@ -125,16 +125,16 @@ class BotController extends Controller
 //
 //         dd($resp);
 
-        $date=\Carbon\Carbon::now();
-        $date_to=clone $date;
-        $date_fromHour=clone $date;
+        $date = \Carbon\Carbon::now();
+        $date_to = clone $date;
+        $date_fromHour = clone $date;
         $date->subDay();
         $date_fromHour->subHour();
-        $blocksDay=\App\Models\Block::whereBetween('created_date', [$date, $date_to])->get();
-        $blocksHour=$blocksDay->where('created_date' ,'>=',$date_fromHour->format('Y-m-d H:i:s.uP'));
+        $blocksDay = \App\Models\Block::whereBetween('created_date', [$date, $date_to])->get();
+        $blocksHour = $blocksDay->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
 
-        $shares=Share::whereBetween('created_date', [$date, $date_to])->get();
-        $sharesHours=$shares->where('created_date' ,'>=',$date_fromHour->format('Y-m-d H:i:s.uP'));
+        $shares = Share::whereBetween('created_date', [$date, $date_to])->get();
+        $sharesHours = $shares->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
         $hashrate = $shares->sum('pool_diff');
         $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
         $hashrate = $sharesHours->sum('pool_diff');
@@ -146,7 +146,7 @@ class BotController extends Controller
                 'day' => ['sum' => '', 'count' => $blocksDay->count()],
                 'hour' => ['sum' => '', 'count' => $blocksHour->count()],
             ],
-            'blockHour'=>$blocksHour
+            'blockHour' => $blocksHour
         ];
     }
 
@@ -181,12 +181,12 @@ class BotController extends Controller
         $date_fromHour->subSeconds(3600);
         $date_from->subSeconds(86400);
 
-        $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_from, $date_to])->select('pool_diff')->get();
+        $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_from, $date_to])->get();
         if ($shares->first()) {
             $hashrate = $shares->sum('pool_diff');
             $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
 
-            $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_fromHour, $date_to])->select('pool_diff')->get();
+            $shares = $shares->where('created_date', '>=', $date_fromHour);
             $hashrate = $shares->sum('pool_diff');
             $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
 

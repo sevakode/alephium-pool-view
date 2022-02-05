@@ -11,13 +11,18 @@ use function Symfony\Component\String\s;
 class FarmerController extends Controller
 {
     public function index(){
-        $stats=new BotController();
-        $stats=$stats->statsPool();
-
-        return view('welcome',["blockHour"=>$stats['blockHour'],'hash'=>$stats['hash'],'count'=>$stats['revenue']]);
+//        $controller=new BotController();
+//        $stats=$controller->statsPool();
+//
+//        return view('welcome',["blockHour"=>$stats['blockHour'],'hash'=>$stats['hash'],'count'=>$stats['revenue']]);
+        return view('welcome');
 
     }
-    public function show($address){
+    public function show( $address){
+        $controller=new BotController();
+        $hash=$controller->stats($address);
+        $balance=$controller->balance($address);
+
         return view('farmer');
     }
 }
