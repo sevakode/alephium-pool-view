@@ -484,7 +484,10 @@
                     <!--begin::Logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
                         <a href="/">
-                            <img alt="Logo" src="{{asset('media/logo.jpeg')}}" class="h-20px h-lg-30px"/>
+{{--                            <img alt="Logo" src="{{asset('media/logo.jpeg')}}" class="h-20px h-lg-30px"/>--}}
+                            <span class="text-danger">
+                                YOUPOOL
+                            </span>
                         </a>
                     </div>
                     <!--end::Logo-->

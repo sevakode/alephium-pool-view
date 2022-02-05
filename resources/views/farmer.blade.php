@@ -1,5 +1,5 @@
 @extends('app')
-@section('contend')
+@section('content')
 <!--begin::Post-->
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
