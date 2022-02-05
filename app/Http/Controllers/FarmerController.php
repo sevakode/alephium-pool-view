@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Share;
 use App\Services\NodeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use function Symfony\Component\String\s;
 
 class FarmerController extends Controller
 {
     public function index(){
-        $date_from=\Carbon\Carbon::now();
-        $date_to=clone $date_from;
-        $date_from->subHour();
-        $blocks=\App\Models\Block::whereBetween('created_date', [$date_from, $date_to])->get();
-        return view('welcome',["blocks"=>$blocks,'blockHour'=>$blocks->count()]);
+        $stats=new BotController();
+        $stats=$stats->statsPool();
+
+        return view('welcome',["blockHour"=>$stats['blockHour'],'hash'=>$stats['hash'],'count'=>$stats['revenue']]);
 
     }
     public function show($address){

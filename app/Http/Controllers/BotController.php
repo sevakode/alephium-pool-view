@@ -125,36 +125,28 @@ class BotController extends Controller
 //
 //         dd($resp);
 
-        $date_from = \Carbon\Carbon::now();
-        $date_to = clone $date_from;
-        $date_fromHour = clone $date_from;
+        $date=\Carbon\Carbon::now();
+        $date_to=clone $date;
+        $date_fromHour=clone $date;
+        $date->subDay();
+        $date_fromHour->subHour();
+        $blocksDay=\App\Models\Block::whereBetween('created_date', [$date, $date_to])->get();
+        $blocksHour=$blocksDay->where('created_date' ,'>=',$date_fromHour->format('Y-m-d H:i:s.uP'));
 
-        $date_fromHour->subSeconds(3600);
-        $date_from->subSeconds(86400);
-
-        $shares = DB::table('shares')
-            ->whereBetween('created_date', [$date_from, $date_to])->select('pool_diff')->get();
+        $shares=Share::whereBetween('created_date', [$date, $date_to])->get();
+        $sharesHours=$shares->where('created_date' ,'>=',$date_fromHour->format('Y-m-d H:i:s.uP'));
         $hashrate = $shares->sum('pool_diff');
         $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
-
-        $shares = DB::table('shares')
-            ->whereBetween('created_date', [$date_fromHour, $date_to])->select('pool_diff')->get();
-        $hashrate = $shares->sum('pool_diff');
+        $hashrate = $sharesHours->sum('pool_diff');
         $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
-
-        $blocksDay = DB::table('blocks')
-            ->whereBetween('created_date', [$date_from, $date_to])->select('id')->get();
-
-
-        $blocksHour = DB::table('blocks')
-            ->whereBetween('created_date', [$date_fromHour, $date_to])->select('id')->get();
 
         return [
             'hash' => ['day' => round($hashrateDay / 1000000000, 3), 'hour' => round($hashrateHour / 1000000000, 3)],
             'revenue' => [
                 'day' => ['sum' => '', 'count' => $blocksDay->count()],
                 'hour' => ['sum' => '', 'count' => $blocksHour->count()],
-            ]
+            ],
+            'blockHour'=>$blocksHour
         ];
     }
 
