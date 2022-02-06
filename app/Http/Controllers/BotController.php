@@ -161,8 +161,7 @@ class BotController extends Controller
     public function balance($address)
     {
         if (Cache::has('balances')) {
-            $balances = Cache::get('stats');
-            return $balances;
+            return Cache::get('stats');
         }
         else{
             $nodeService = NodeService::make();
@@ -194,9 +193,7 @@ class BotController extends Controller
     public function stats($address)
     {
         if (Cache::has('stats')) {
-
-            $stats = Cache::get('stats');
-            return $stats;
+            return Cache::get('stats');
         }
         else{
             $date_from = \Carbon\Carbon::now();
