@@ -133,7 +133,7 @@ class BotController extends Controller
                 ],
                 'blockHour' => $blocksHour
             ];
-            Cache::store()->put('stats', $stats, 300); // 10 Minutes
+            Cache::store()->put('stats', $stats, 120); // 2 Minutes
         }
         return $stats;
     }
@@ -158,7 +158,7 @@ class BotController extends Controller
                 $usd = round($balance * $rates[0]->current_price, 2);
                 $balances= ['ALPH' => $balance."A", 'USD' => $usd."$"];
 
-                Cache::store()->put('balances'.$address, $balances, 300); // 10 Minutes
+                Cache::store()->put('balances'.$address, $balances, 300);
 
                 return $balances;
             } else {
@@ -207,7 +207,7 @@ class BotController extends Controller
                 }
                 $stats=['day' =>$day , 'hour' =>$hour ];
 
-                Cache::store()->put('stats'.$address, $stats, 300); // 10 Minutes
+                Cache::store()->put('stats'.$address, $stats, 30);
 
                 return $stats;
 
