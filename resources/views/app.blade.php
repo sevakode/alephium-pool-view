@@ -454,7 +454,7 @@
 														</svg>
 													</span>
                                             <!--end::Svg Icon-->
-                                            <input type="text" class="form-control form-control-solid ps-10"
+                                            <input required type="text" class="form-control form-control-solid ps-10"
                                                    name="address" value="" placeholder="Search address"/>
                                         </div>
 
