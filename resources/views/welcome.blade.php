@@ -161,6 +161,19 @@
 
 
                         </div>
+                        <div class="d-flex align-items-center mb-8">
+
+
+                            <!--end::Checkbox-->
+                            <!--begin::Description-->
+                            <div class="flex-grow-1">
+                                <div class="text-gray-800  fw-bolder fs-6">Telegram Chat</div>
+                            </div>
+                            <span class="badge badge-light-primary fw-bolder"><a class="text-hover-primary"
+                                                                                 href="https://t.me/LHRpoo">@LHRpool</a></span>
+
+
+                        </div>
 
                     </div>
                     <!--end::Body-->
