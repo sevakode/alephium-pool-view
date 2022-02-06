@@ -45,15 +45,7 @@ class BotController extends Controller
 
                         $stats = $this->stats($message['text']);
                         if ($stats) {
-                            if ($stats['day'] > 1000) {
-                                $stats['day'] = $stats['day'] / 1000;
-                                $stats['hour'] = $stats['hour'] / 1000;
-
-                                $text = "Хешрейт за 24 часа: " . $stats['day'] . "GH/s\nХешрейт за 1 час: " . $stats['hour'] . "GH/s";
-                            } else {
-                                $text = "Хешрейт за 24 часа: " . $stats['day'] . "Mh/s\nХешрейт за 1 час: " . $stats['hour'] . "Mh/s";
-
-                            }
+                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'];
                         } else {
                             $text = 'Воркер не в сети';
                         }
@@ -71,13 +63,7 @@ class BotController extends Controller
                 $farmer = Farmer::where('telegram_id', $message['from']['id'])->select('address')->get()->first();
                 if ($farmer) {
                     if ($message['text'] == "/stats") {
-                        $stats = $this->stats($farmer->address);
-                        $balance = $this->balance($farmer->address);
-                        $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
-                        $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'] ;
-
-                        $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
-
+                        $text=$this->statWorker($farmer);
                         $telegram->sendMessage($message['from']['id'], $text);
                     } else {
                         $telegram->sendMessage($message['from']['id'], "Я тебя не понимаю");
@@ -248,6 +234,15 @@ class BotController extends Controller
         $utxos = $nodeService->utxos($address);
 
         return $utxos;
+
+    }
+    public function statWorker($farmer){
+        $stats = $this->stats($farmer->address);
+        $balance = $this->balance($farmer->address);
+        $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
+        $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'] ;
+
+        return $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $farmer->address;
 
     }
 }
