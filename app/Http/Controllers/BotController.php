@@ -160,8 +160,8 @@ class BotController extends Controller
 
     public function balance($address)
     {
-        if (Cache::has('balances')) {
-            return Cache::get('balances');
+        if (Cache::has('balances'.$address)) {
+            return Cache::get('balances'.$address);
         }
         else{
             $nodeService = NodeService::make();
@@ -178,7 +178,7 @@ class BotController extends Controller
                 $usd = round($balance * $rates[0]->current_price, 2);
                 $balances= ['ALPH' => $balance."A", 'USD' => $usd."$"];
 
-                Cache::store()->put('balances', $balances, 300); // 10 Minutes
+                Cache::store()->put('balances'.$address, $balances, 300); // 10 Minutes
 
                 return $balances;
             } else {
@@ -192,8 +192,8 @@ class BotController extends Controller
 
     public function stats($address)
     {
-        if (Cache::has('stats')) {
-            return Cache::get('stats');
+        if (Cache::has('stats'.$address)) {
+            return Cache::get('stats'.$address);
         }
         else{
             $date_from = \Carbon\Carbon::now();
@@ -225,7 +225,7 @@ class BotController extends Controller
 
                 }
                 $stats=['day' =>$day , 'hour' =>$hour ];
-                Cache::store()->put('stats', $stats, 300); // 10 Minutes
+                Cache::store()->put('stats'.$address, $stats, 300); // 10 Minutes
 
                 return $stats;
 
