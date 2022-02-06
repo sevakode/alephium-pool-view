@@ -201,118 +201,113 @@
             <!--end::Col-->
 
 
-            {{--                            <!--begin::Col-->--}}
-            {{--                            <div class="col-xxl-4 ">--}}
-            {{--                                <!--begin::List Widget 5-->--}}
-            {{--                                <div class="card card-xxl-stretch">--}}
-            {{--                                    <!--begin::Header-->--}}
-            {{--                                    <div class="card-header align-items-center border-0 mt-4">--}}
-            {{--                                        <h3 class="card-title align-items-start flex-column">--}}
-            {{--                                            <span class="fw-bolder mb-2 text-dark">Roadmap</span>--}}
-            {{--                                            <span class="text-muted fw-bold fs-7">To-Do</span>--}}
-            {{--                                        </h3>--}}
+                                        <!--begin::Col-->
+                                        <div class="col-xxl-4 ">
+                                            <!--begin::List Widget 5-->
+                                            <div class="card card-xxl-stretch">
+                                                <!--begin::Header-->
+                                                <div class="card-header align-items-center border-0 mt-4">
+                                                    <h3 class="card-title align-items-start flex-column">
+                                                        <span class="fw-bolder mb-2 text-dark">Roadmap</span>
+                                                        <span class="text-muted fw-bold fs-7">To-Do</span>
+                                                    </h3>
 
-            {{--                                    </div>--}}
-            {{--                                    <!--end::Header-->--}}
-            {{--                                    <!--begin::Body-->--}}
-            {{--                                    <div class="card-body pt-5">--}}
-            {{--                                        <!--begin::Timeline-->--}}
-            {{--                                        <div class="timeline-label">--}}
-            {{--                                            <!--begin::Item-->--}}
-            {{--                                            <div class="timeline-item">--}}
-            {{--                                                <!--begin::Label-->--}}
-            {{--                                                <div class="timeline-label fw-bolder text-gray-800 fs-6">02/05</div>--}}
-            {{--                                                <!--end::Label-->--}}
-            {{--                                                <!--begin::Badge-->--}}
-            {{--                                                <div class="timeline-badge">--}}
-            {{--                                                    <i class="fa fa-genderless text-warning fs-1"></i>--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Badge-->--}}
-            {{--                                                <!--begin::Text-->--}}
-            {{--                                                <div class="fw-mormal timeline-content text-muted ps-3">06--}}
-            {{--                                                    Febrasdasdsadsa saduary--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Text-->--}}
-            {{--                                            </div>--}}
-            {{--                                            <!--end::Item-->--}}
-            {{--                                            <!--begin::Item-->--}}
-            {{--                                            <div class="timeline-item">--}}
-            {{--                                                <!--begin::Label-->--}}
-            {{--                                                <div class="timeline-label fw-bolder text-gray-800 fs-6">02/05</div>--}}
-            {{--                                                <!--end::Label-->--}}
-            {{--                                                <!--begin::Badge-->--}}
-            {{--                                                <div class="timeline-badge">--}}
-            {{--                                                    <i class="fa fa-genderless text-success fs-1"></i>--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Badge-->--}}
-            {{--                                                <!--begin::Content-->--}}
-            {{--                                                <div class="timeline-content d-flex">--}}
-            {{--                                                    <span class="fw-bolder text-gray-800 ps-3">AEOL meeting</span>--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Content-->--}}
-            {{--                                            </div>--}}
-            {{--                                            <!--end::Item-->--}}
-            {{--                                            <!--begin::Item-->--}}
-            {{--                                            <div class="timeline-item">--}}
-            {{--                                                <!--begin::Label-->--}}
-            {{--                                                <div class="timeline-label fw-bolder text-gray-800 fs-6">02/05</div>--}}
-            {{--                                                <!--end::Label-->--}}
-            {{--                                                <!--begin::Badge-->--}}
-            {{--                                                <div class="timeline-badge">--}}
-            {{--                                                    <i class="fa fa-genderless text-danger fs-1"></i>--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Badge-->--}}
-            {{--                                                <!--begin::Desc-->--}}
-            {{--                                                <div class="timeline-content fw-bolder text-gray-800 ps-3">Make deposit--}}
-            {{--                                                    <a href="#" class="text-primary">USD 700</a>. to ESL--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Desc-->--}}
-            {{--                                            </div>--}}
-            {{--                                            <!--end::Item-->--}}
-            {{--                                            <!--begin::Item-->--}}
-            {{--                                            <div class="timeline-item">--}}
-            {{--                                                <!--begin::Label-->--}}
-            {{--                                                <div class="timeline-label fw-bolder text-gray-800 fs-6">02/05</div>--}}
-            {{--                                                <!--end::Label-->--}}
-            {{--                                                <!--begin::Badge-->--}}
-            {{--                                                <div class="timeline-badge">--}}
-            {{--                                                    <i class="fa fa-genderless text-primary fs-1"></i>--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Badge-->--}}
-            {{--                                                <!--begin::Text-->--}}
-            {{--                                                <div class="timeline-content fw-mormal text-muted ps-3">Indulging in--}}
-            {{--                                                    poorly driving and keep structure keep great--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Text-->--}}
-            {{--                                            </div>--}}
-            {{--                                            <!--end::Item-->--}}
-            {{--                                            <!--begin::Item-->--}}
-            {{--                                            <div class="timeline-item">--}}
-            {{--                                                <!--begin::Label-->--}}
-            {{--                                                <div class="timeline-label fw-bolder text-gray-800 fs-6">02/05</div>--}}
-            {{--                                                <!--end::Label-->--}}
-            {{--                                                <!--begin::Badge-->--}}
-            {{--                                                <div class="timeline-badge">--}}
-            {{--                                                    <i class="fa fa-genderless text-danger fs-1"></i>--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Badge-->--}}
-            {{--                                                <!--begin::Desc-->--}}
-            {{--                                                <div class="timeline-content fw-bold text-gray-800 ps-3">New order--}}
-            {{--                                                    placed--}}
-            {{--                                                    <a href="#" class="text-primary">#XF-2356</a>.--}}
-            {{--                                                </div>--}}
-            {{--                                                <!--end::Desc-->--}}
-            {{--                                            </div>--}}
-            {{--                                            <!--end::Item-->--}}
+                                                </div>
+                                                <!--end::Header-->
+                                                <!--begin::Body-->
+                                                <div class="card-body pt-5">
+                                                    <!--begin::Timeline-->
+                                                    <div class="timeline-label">
+                                                        <!--begin::Item-->
+                                                        <div class="timeline-item">
+                                                            <!--begin::Label-->
+                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">02/08</div>
+                                                            <!--end::Label-->
+                                                            <!--begin::Badge-->
+                                                            <div class="timeline-badge">
+                                                                <i class="fa fa-genderless text-warning fs-1"></i>
+                                                            </div>
+                                                            <!--end::Badge-->
+                                                            <!--begin::Text-->
+                                                            <div class="fw-mormal timeline-content text-muted ps-3">Instructions
+                                                            </div>
+                                                            <!--end::Text-->
+                                                        </div>
+                                                        <!--end::Item-->
+                                                        <!--begin::Item-->
+                                                        <div class="timeline-item">
+                                                            <!--begin::Label-->
+                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">02/11</div>
+                                                            <!--end::Label-->
+                                                            <!--begin::Badge-->
+                                                            <div class="timeline-badge">
+                                                                <i class="fa fa-genderless text-success fs-1"></i>
+                                                            </div>
+                                                            <!--end::Badge-->
+                                                            <!--begin::Content-->
+                                                            <div class="timeline-content d-flex">
+                                                                <span class="fw-bolder text-gray-800 ps-3">Charts</span>
+                                                            </div>
+                                                            <!--end::Content-->
+                                                        </div>
+                                                        <!--end::Item-->
+                                                        <!--begin::Item-->
+                                                        <div class="timeline-item">
+                                                            <!--begin::Label-->
+                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">Very soon</div>
+                                                            <!--end::Label-->
+                                                            <!--begin::Badge-->
+                                                            <div class="timeline-badge">
+                                                                <i class="fa fa-genderless text-danger fs-1"></i>
+                                                            </div>
+                                                            <!--end::Badge-->
+                                                            <!--begin::Desc-->
+                                                            <div class="timeline-content fw-bolder text-gray-800 ps-3">Transaction list
+                                                            </div>
+                                                            <!--end::Desc-->
+                                                        </div>
+                                                        <!--end::Item-->
+                                                        <!--begin::Item-->
+                                                        <div class="timeline-item">
+                                                            <!--begin::Label-->
+                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">Soon</div>
+                                                            <!--end::Label-->
+                                                            <!--begin::Badge-->
+                                                            <div class="timeline-badge">
+                                                                <i class="fa fa-genderless text-primary fs-1"></i>
+                                                            </div>
+                                                            <!--end::Badge-->
+                                                            <!--begin::Text-->
+                                                            <div class="timeline-content fw-mormal text-muted ps-3">Calculator
+                                                            </div>
+                                                            <!--end::Text-->
+                                                        </div>
+                                                        <!--end::Item-->
+                                                        <!--begin::Item-->
+                                                        <div class="timeline-item">
+                                                            <!--begin::Label-->
+                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">03/01</div>
+                                                            <!--end::Label-->
+                                                            <!--begin::Badge-->
+                                                            <div class="timeline-badge">
+                                                                <i class="fa fa-genderless text-danger fs-1"></i>
+                                                            </div>
+                                                            <!--end::Badge-->
+                                                            <!--begin::Desc-->
+                                                            <div class="timeline-content fw-bold text-gray-800 ps-3">Finish layout
+                                                            </div>
+                                                            <!--end::Desc-->
+                                                        </div>
+                                                        <!--end::Item-->
 
-            {{--                                        </div>--}}
-            {{--                                        <!--end::Timeline-->--}}
-            {{--                                    </div>--}}
-            {{--                                    <!--end: Card Body-->--}}
-            {{--                                </div>--}}
-            {{--                                <!--end: List Widget 5-->--}}
-            {{--                            </div>--}}
-            {{--                            <!--end::Col-->--}}
+                                                    </div>
+                                                    <!--end::Timeline-->
+                                                </div>
+                                                <!--end: Card Body-->
+                                            </div>
+                                            <!--end: List Widget 5-->
+                                        </div>
+                                        <!--end::Col-->
 
 
 
