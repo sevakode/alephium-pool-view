@@ -8,6 +8,7 @@ use App\Models\Share;
 use App\Services\NodeService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -139,8 +140,7 @@ class BotController extends Controller
         $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
         $hashrate = $sharesHours->sum('pool_diff');
         $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
-
-        return [
+        $stats=[
             'hash' => ['day' => round($hashrateDay / 1000000000, 3), 'hour' => round($hashrateHour / 1000000000, 3)],
             'revenue' => [
                 'day' => ['sum' => '', 'count' => $blocksDay->count()],
@@ -148,6 +148,13 @@ class BotController extends Controller
             ],
             'blockHour' => $blocksHour
         ];
+        if (Cache::has('stats')) {
+            $stats = Cache::get('stats');
+        }
+        else{
+            Cache::store()->put('stats', $stats, 300); // 10 Minutes
+        }
+        return $stats;
     }
 
     public function balance($address)
@@ -164,7 +171,15 @@ class BotController extends Controller
             $balance = round($balance, 4);
 
             $usd = round($balance * $rates[0]->current_price, 2);
-            return ['ALPH' => $balance."A", 'USD' => $usd."$"];
+            $balances= ['ALPH' => $balance."A", 'USD' => $usd."$"];
+
+            if (Cache::has('balances')) {
+                $balances = Cache::get('stats');
+            }
+            else{
+                Cache::store()->put('balances', $balances, 300); // 10 Minutes
+            }
+            return $balances;
         } else {
             return null;
 
@@ -202,7 +217,14 @@ class BotController extends Controller
                 $day = $day  . "Mh/s";
 
             }
-            return ['day' =>$day , 'hour' =>$hour ];
+            $stats=['day' =>$day , 'hour' =>$hour ];
+            if (Cache::has('stats')) {
+                $stats = Cache::get('stats');
+            }
+            else{
+                Cache::store()->put('stats', $stats, 300); // 10 Minutes
+            }
+            return $stats;
 
         } else {
             return null;
