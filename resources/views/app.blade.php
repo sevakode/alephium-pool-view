@@ -485,9 +485,9 @@
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
                         <a href="/">
 {{--                            <img alt="Logo" src="{{asset('media/logo.jpeg')}}" class="h-20px h-lg-30px"/>--}}
-                            <span class="text-danger">
-                                YOUPOOL
-                            </span>
+                            <h3 class="text-danger">
+                                LHRpool
+                            </h3>
                         </a>
                     </div>
                     <!--end::Logo-->
