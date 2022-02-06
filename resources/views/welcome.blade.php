@@ -35,7 +35,7 @@
 															{{$hash['day']}}GH/s
 															</span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-primary fw-bold fs-6">Daily hashrate</div>
+                                    <div class="text-primary fw-bold fs-6">Hashrate per day</div>
                                 </div>
                                 <!--end::Col-->
                                 <!--begin::Col-->
@@ -45,7 +45,7 @@
 															{{$hash['hour']}}GH/s
 															</span>
                                     <!--end::Svg Icon-->
-                                    <div class="text-primary fw-bold fs-6">Hours hashrate</div>
+                                    <div class="text-primary fw-bold fs-6">Hashrate per houre</div>
                                 </div>
                                 <!--end::Col-->
                             </div>

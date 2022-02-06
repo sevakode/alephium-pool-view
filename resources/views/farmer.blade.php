@@ -12,7 +12,7 @@
                     <div class="card card-xxl-stretch">
                         <!--begin::Header-->
                         <div class="card-header border-0 bg-danger py-5">
-                            <h3 class="card-title fw-bolder text-white">Miner Statistics</h3>
+                            <h3 class="card-title fw-bolder text-white">{{$address}}</h3>
 
                         </div>
                         <!--end::Header-->
@@ -36,7 +36,7 @@
 															{{$hash['day'] }}
 															</span>
                                             <!--end::Svg Icon-->
-                                            <div class="text-primary fw-bold fs-6">Per day hashrate</div>
+                                            <div class="text-primary fw-bold fs-6">Hashrate per day</div>
                                         </div>
                                         <!--end::Col-->
                                         <!--begin::Col-->
@@ -46,7 +46,7 @@
 															{{ $hash['hour']}}
 															</span>
                                             <!--end::Svg Icon-->
-                                            <div class="text-primary fw-bold fs-6">Per hour hashrate</div>
+                                            <div class="text-primary fw-bold fs-6">Hashrate per houre</div>
                                         </div>
                                         <!--end::Col-->
                                     </div>
