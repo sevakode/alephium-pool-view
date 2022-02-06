@@ -60,11 +60,11 @@
                                         <div class="col bg-light-primary px-6 py-8 rounded-2 me-7">
                                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                             <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
-                                                        {{$balance['ALPH']}}
+                                                <a class="bold text-hover-primary" href="https://explorer.alephium.org/#/addresses/{{$address}}"> {{$balance['ALPH']}}</a>
 
 															</span>
                                             <!--end::Svg Icon-->
-                                            <div class="text-danger bold fw-bold fs-6 mt-2"><a class="text-hover-primary" href="https://explorer.alephium.org/#/addresses/{{$address}}">Balance ALPH</a></div>
+                                            <div class="text-danger fw-bold fs-6 mt-2">Balance ALPH</div>
                                         </div>
                                         <!--end::Col-->
                                         <!--begin::Col-->
