@@ -126,32 +126,33 @@ class BotController extends Controller
 //
 //         dd($resp);
 
-        $date = \Carbon\Carbon::now();
-        $date_to = clone $date;
-        $date_fromHour = clone $date;
-        $date->subDay();
-        $date_fromHour->subHour();
-        $blocksDay = \App\Models\Block::whereBetween('created_date', [$date, $date_to])->get();
-        $blocksHour = $blocksDay->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
-
-        $shares = Share::whereBetween('created_date', [$date, $date_to])->get();
-        $sharesHours = $shares->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
-        $hashrate = $shares->sum('pool_diff');
-        $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
-        $hashrate = $sharesHours->sum('pool_diff');
-        $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
-        $stats=[
-            'hash' => ['day' => round($hashrateDay / 1000000000, 3), 'hour' => round($hashrateHour / 1000000000, 3)],
-            'revenue' => [
-                'day' => ['sum' => '', 'count' => $blocksDay->count()],
-                'hour' => ['sum' => '', 'count' => $blocksHour->count()],
-            ],
-            'blockHour' => $blocksHour
-        ];
         if (Cache::has('stats')) {
             $stats = Cache::get('stats');
         }
         else{
+
+            $date = \Carbon\Carbon::now();
+            $date_to = clone $date;
+            $date_fromHour = clone $date;
+            $date->subDay();
+            $date_fromHour->subHour();
+            $blocksDay = \App\Models\Block::whereBetween('created_date', [$date, $date_to])->get();
+            $blocksHour = $blocksDay->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
+
+            $shares = Share::whereBetween('created_date', [$date, $date_to])->get();
+            $sharesHours = $shares->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
+            $hashrate = $shares->sum('pool_diff');
+            $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
+            $hashrate = $sharesHours->sum('pool_diff');
+            $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
+            $stats=[
+                'hash' => ['day' => round($hashrateDay / 1000000000, 3), 'hour' => round($hashrateHour / 1000000000, 3)],
+                'revenue' => [
+                    'day' => ['sum' => '', 'count' => $blocksDay->count()],
+                    'hour' => ['sum' => '', 'count' => $blocksHour->count()],
+                ],
+                'blockHour' => $blocksHour
+            ];
             Cache::store()->put('stats', $stats, 300); // 10 Minutes
         }
         return $stats;
@@ -159,76 +160,83 @@ class BotController extends Controller
 
     public function balance($address)
     {
-        $nodeService = NodeService::make();
-        $balance = $nodeService->balance($address);
-
-        $rates = Http::get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=alephium');
-
-        $rates = json_decode($rates->body());
-        $balance = json_decode($balance);
-        if (isset($balance->balanceHint)) {
-            $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
-            $balance = round($balance, 4);
-
-            $usd = round($balance * $rates[0]->current_price, 2);
-            $balances= ['ALPH' => $balance."A", 'USD' => $usd."$"];
-
-            if (Cache::has('balances')) {
-                $balances = Cache::get('stats');
-            }
-            else{
-                Cache::store()->put('balances', $balances, 300); // 10 Minutes
-            }
+        if (Cache::has('balances')) {
+            $balances = Cache::get('stats');
             return $balances;
-        } else {
-            return null;
-
         }
+        else{
+            $nodeService = NodeService::make();
+            $balance = $nodeService->balance($address);
+
+            $rates = Http::get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=alephium');
+
+            $rates = json_decode($rates->body());
+            $balance = json_decode($balance);
+            if (isset($balance->balanceHint)) {
+                $balance = substr($balance->balanceHint, 0, -5); // возвращает "abcd"
+                $balance = round($balance, 4);
+
+                $usd = round($balance * $rates[0]->current_price, 2);
+                $balances= ['ALPH' => $balance."A", 'USD' => $usd."$"];
+
+                Cache::store()->put('balances', $balances, 300); // 10 Minutes
+
+                return $balances;
+            } else {
+                return null;
+
+            }
+        }
+
 
     }
 
     public function stats($address)
     {
-        $date_from = \Carbon\Carbon::now();
-        $date_to = clone $date_from;
-        $date_fromHour = clone $date_from;
+        if (Cache::has('stats')) {
 
-        $date_fromHour->subSeconds(3600);
-        $date_from->subSeconds(86400);
-
-        $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_from, $date_to])->get();
-        if ($shares->first()) {
-            $hashrate = $shares->sum('pool_diff');
-            $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
-
-            $shares = $shares->where('created_date', '>=', $date_fromHour);
-            $hashrate = $shares->sum('pool_diff');
-            $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
-            $day = round($hashrateDay / 1000000);
-            $hour = round($hashrateHour / 1000000);
-            if ($day > 1000) {
-                $day = $day / 1000;
-                $hour = $hour / 1000;
-
-                $hour = $hour . "GH/s";
-                $day = $day .  "GH/s";
-            } else {
-                $hour = $hour  . "Mh/s";
-                $day = $day  . "Mh/s";
-
-            }
-            $stats=['day' =>$day , 'hour' =>$hour ];
-            if (Cache::has('stats')) {
-                $stats = Cache::get('stats');
-            }
-            else{
-                Cache::store()->put('stats', $stats, 300); // 10 Minutes
-            }
+            $stats = Cache::get('stats');
             return $stats;
-
-        } else {
-            return null;
         }
+        else{
+            $date_from = \Carbon\Carbon::now();
+            $date_to = clone $date_from;
+            $date_fromHour = clone $date_from;
+
+            $date_fromHour->subSeconds(3600);
+            $date_from->subSeconds(86400);
+
+            $shares = \App\Models\Share::where('worker', $address)->whereBetween('created_date', [$date_from, $date_to])->get();
+            if ($shares->first()) {
+                $hashrate = $shares->sum('pool_diff');
+                $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
+
+                $shares = $shares->where('created_date', '>=', $date_fromHour);
+                $hashrate = $shares->sum('pool_diff');
+                $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
+                $day = round($hashrateDay / 1000000);
+                $hour = round($hashrateHour / 1000000);
+                if ($day > 1000) {
+                    $day = $day / 1000;
+                    $hour = $hour / 1000;
+
+                    $hour = $hour . "GH/s";
+                    $day = $day .  "GH/s";
+                } else {
+                    $hour = $hour  . "Mh/s";
+                    $day = $day  . "Mh/s";
+
+                }
+                $stats=['day' =>$day , 'hour' =>$hour ];
+                Cache::store()->put('stats', $stats, 300); // 10 Minutes
+
+                return $stats;
+
+            } else {
+                return null;
+            }
+        }
+
 
     }
 
