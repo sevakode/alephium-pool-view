@@ -156,7 +156,7 @@ class BotController extends Controller
                 $balance = round($balance, 4);
 
                 $usd = round($balance * $rates[0]->current_price, 2);
-                $balances= ['ALPH' => $balance."A", 'USD' => $usd."$"];
+                $balances= ['ALPH' => $balance."א", 'USD' => $usd."$"];
 
                 Cache::store()->put('balances'.$address, $balances, 300);
 

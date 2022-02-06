@@ -61,8 +61,7 @@
                                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                             <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
                                                 <a class="bold text-hover-primary" href="https://explorer.alephium.org/#/addresses/{{$address}}"> {{$balance['ALPH']}}</a>
-
-															</span>
+                                            </span>
                                             <!--end::Svg Icon-->
                                             <div class="text-danger fw-bold fs-6 mt-2">Balance ALPH</div>
                                         </div>
