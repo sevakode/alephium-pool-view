@@ -6,6 +6,7 @@ use App\Http\TelegramSender;
 use App\Models\Farmer;
 use App\Models\Share;
 use App\Services\NodeService;
+use App\Services\TelegramService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -73,15 +74,8 @@ class BotController extends Controller
                         $stats = $this->stats($farmer->address);
                         $balance = $this->balance($farmer->address);
                         $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
-                        if ($stats['day'] > 1000) {
-                            $stats['day'] = $stats['day'] / 1000;
-                            $stats['hour'] = $stats['hour'] / 1000;
+                        $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'] ;
 
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'] ;
-                        } else {
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'] ;
-
-                        }
                         $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
 
                         $telegram->sendMessage($message['from']['id'], $text);
@@ -213,6 +207,7 @@ class BotController extends Controller
                 $hashrateHour = $hashrate * 16 * pow(2, 30) / 3600;
                 $day = round($hashrateDay / 1000000);
                 $hour = round($hashrateHour / 1000000);
+
                 if ($day > 1000) {
                     $day = $day / 1000;
                     $hour = $hour / 1000;
@@ -225,6 +220,7 @@ class BotController extends Controller
 
                 }
                 $stats=['day' =>$day , 'hour' =>$hour ];
+
                 Cache::store()->put('stats'.$address, $stats, 300); // 10 Minutes
 
                 return $stats;
