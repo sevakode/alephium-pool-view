@@ -170,7 +170,7 @@
                                 <div class="text-gray-800  fw-bolder fs-6">Telegram Chat</div>
                             </div>
                             <span class="badge badge-light-primary fw-bolder"><a class="text-hover-primary"
-                                                                                 href="https://t.me/LHRpoo">@LHRpool</a></span>
+                                                                                 href="https://t.me/LHRpool">@LHRpool</a></span>
 
 
                         </div>
