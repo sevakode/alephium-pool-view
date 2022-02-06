@@ -36,7 +36,7 @@
 															{{$hash['day'] }}
 															</span>
                                             <!--end::Svg Icon-->
-                                            <div class="text-primary fw-bold fs-6">Daily hashrate</div>
+                                            <div class="text-primary fw-bold fs-6">Per day hashrate</div>
                                         </div>
                                         <!--end::Col-->
                                         <!--begin::Col-->
@@ -46,7 +46,7 @@
 															{{ $hash['hour']}}
 															</span>
                                             <!--end::Svg Icon-->
-                                            <div class="text-primary fw-bold fs-6">Hours hashrate</div>
+                                            <div class="text-primary fw-bold fs-6">Per hour hashrate</div>
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -64,7 +64,7 @@
 
 															</span>
                                             <!--end::Svg Icon-->
-                                            <div class="text-danger fw-bold fs-6 mt-2">Balance ALPH</div>
+                                            <div class="text-danger bold fw-bold fs-6 mt-2"><a class="text-hover-primary" href="https://explorer.alephium.org/#/addresses/{{$address}}">Balance ALPH</a></div>
                                         </div>
                                         <!--end::Col-->
                                         <!--begin::Col-->

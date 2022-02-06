@@ -28,7 +28,8 @@ class FarmerController extends Controller
         $hash = $controller->stats($address);
         return view('farmer', [
             'hash' => $hash,
-            'balance'=>$balance
+            'balance'=>$balance,
+            'address'=>$address
         ]);
     }
 }
