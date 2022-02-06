@@ -161,7 +161,7 @@ class BotController extends Controller
     public function balance($address)
     {
         if (Cache::has('balances')) {
-            return Cache::get('stats');
+            return Cache::get('balances');
         }
         else{
             $nodeService = NodeService::make();
