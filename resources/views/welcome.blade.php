@@ -147,6 +147,9 @@
                             <span class="badge badge-light-info fw-bolder"><a class="text-hover-primary"
                                                                               href="https://www.bzminer.com/">BzMiner</a></span>
 
+                            <span class="badge badge-light-info fw-bolder"><a class="text-hover-primary"
+                                                                              href="https://github.com/doktor83/SRBMiner-Multi/releases">SRBMiner</a></span>
+
                         </div>
                         <div class="d-flex align-items-center mb-8">
 

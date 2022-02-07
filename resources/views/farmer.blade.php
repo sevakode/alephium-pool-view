@@ -6,15 +6,19 @@
         <div id="kt_content_container" class="container-xxl">
             <!--begin::Row-->
             <div class="row gy-5 g-xl-8">
+                <div class="card-header border-0 bg-danger py-5">
+                    <h3 class="card-title fw-bolder text-white">{{$address}}</h3>
+
+                </div>
                 <!--begin::Col-->
                 <div class="col-xxl-4 ">
                     <!--begin::Mixed Widget 2-->
                     <div class="card card-xxl-stretch">
                         <!--begin::Header-->
-                        <div class="card-header border-0 bg-danger py-5">
-                            <h3 class="card-title fw-bolder text-white">{{$address}}</h3>
+{{--                        <div class="card-header border-0 bg-danger py-5">--}}
+{{--                            <h3 class="card-title fw-bolder text-white">{{$address}}</h3>--}}
 
-                        </div>
+{{--                        </div>--}}
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body p-0">
