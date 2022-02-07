@@ -241,7 +241,7 @@
                                                             <!--end::Label-->
                                                             <!--begin::Badge-->
                                                             <div class="timeline-badge">
-                                                                <i class="fa fa-genderless text-success fs-1"></i>
+                                                                <i class="fa fa-genderless text-primary fs-1"></i>
                                                             </div>
                                                             <!--end::Badge-->
                                                             <!--begin::Content-->
@@ -258,11 +258,11 @@
                                                             <!--end::Label-->
                                                             <!--begin::Badge-->
                                                             <div class="timeline-badge">
-                                                                <i class="fa fa-genderless text-danger fs-1"></i>
+                                                                <i class="fa fa-genderless text-primary fs-1"></i>
                                                             </div>
                                                             <!--end::Badge-->
                                                             <!--begin::Desc-->
-                                                            <div class="timeline-content fw-bolder text-gray-800 ps-3">Transaction list
+                                                            <div class="timeline-content fw-mormal text-muted ps-3">Transaction list
                                                             </div>
                                                             <!--end::Desc-->
                                                         </div>
@@ -274,11 +274,11 @@
                                                             <!--end::Label-->
                                                             <!--begin::Badge-->
                                                             <div class="timeline-badge">
-                                                                <i class="fa fa-genderless text-primary fs-1"></i>
+                                                                <i class="fa fa-genderless text-danger fs-1"></i>
                                                             </div>
                                                             <!--end::Badge-->
                                                             <!--begin::Text-->
-                                                            <div class="timeline-content fw-mormal text-muted ps-3">Calculator
+                                                            <div class=" timeline-content fw-bolder text-gray-800 ps-3">Calculator
                                                             </div>
                                                             <!--end::Text-->
                                                         </div>
