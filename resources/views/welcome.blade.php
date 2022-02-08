@@ -194,7 +194,7 @@
                                 </div>
                             </div>
                             <span class="badge badge-light-info fw-bolder"><a class="text-hover-primary"
-                                                                              href="https://www.youtube.com/watch?v=2x_uaTFrBWo">Instruction</a></span>
+                                                                              href="https://sevakode.notion.site/Dual-Mining-ETH-ALPH-LHR-100-d04bb72b3faa4e639af8ab0b2fb1a6e5">Instruction</a></span>
 
                         </div>
                     </div>
