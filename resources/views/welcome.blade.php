@@ -221,39 +221,39 @@
                                                 <div class="card-body pt-5">
                                                     <!--begin::Timeline-->
                                                     <div class="timeline-label">
-                                                        <!--begin::Item-->
-                                                        <div class="timeline-item">
-                                                            <!--begin::Label-->
-                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">02/08</div>
-                                                            <!--end::Label-->
-                                                            <!--begin::Badge-->
-                                                            <div class="timeline-badge">
-                                                                <i class="fa fa-genderless text-warning fs-1"></i>
-                                                            </div>
-                                                            <!--end::Badge-->
-                                                            <!--begin::Text-->
-                                                            <div class="fw-mormal timeline-content text-muted ps-3">Instructions
-                                                            </div>
-                                                            <!--end::Text-->
-                                                        </div>
-                                                        <!--end::Item-->
-                                                        <!--begin::Item-->
-                                                        <div class="timeline-item">
-                                                            <!--begin::Label-->
-                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">02/11</div>
-                                                            <!--end::Label-->
-                                                            <!--begin::Badge-->
-                                                            <div class="timeline-badge">
-                                                                <i class="fa fa-genderless text-primary fs-1"></i>
-                                                            </div>
-                                                            <!--end::Badge-->
-                                                            <!--begin::Content-->
-                                                            <div class="timeline-content d-flex">
-                                                                <span class="fw-bolder text-gray-800 ps-3">Charts</span>
-                                                            </div>
-                                                            <!--end::Content-->
-                                                        </div>
-                                                        <!--end::Item-->
+{{--                                                        <!--begin::Item-->--}}
+{{--                                                        <div class="timeline-item">--}}
+{{--                                                            <!--begin::Label-->--}}
+{{--                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">02/08</div>--}}
+{{--                                                            <!--end::Label-->--}}
+{{--                                                            <!--begin::Badge-->--}}
+{{--                                                            <div class="timeline-badge">--}}
+{{--                                                                <i class="fa fa-genderless text-warning fs-1"></i>--}}
+{{--                                                            </div>--}}
+{{--                                                            <!--end::Badge-->--}}
+{{--                                                            <!--begin::Text-->--}}
+{{--                                                            <div class="fw-mormal timeline-content text-muted ps-3">Instructions--}}
+{{--                                                            </div>--}}
+{{--                                                            <!--end::Text-->--}}
+{{--                                                        </div>--}}
+{{--                                                        <!--end::Item-->--}}
+{{--                                                        <!--begin::Item-->--}}
+{{--                                                        <div class="timeline-item">--}}
+{{--                                                            <!--begin::Label-->--}}
+{{--                                                            <div class="timeline-label fw-bolder text-gray-800 fs-6">02/11</div>--}}
+{{--                                                            <!--end::Label-->--}}
+{{--                                                            <!--begin::Badge-->--}}
+{{--                                                            <div class="timeline-badge">--}}
+{{--                                                                <i class="fa fa-genderless text-primary fs-1"></i>--}}
+{{--                                                            </div>--}}
+{{--                                                            <!--end::Badge-->--}}
+{{--                                                            <!--begin::Content-->--}}
+{{--                                                            <div class="timeline-content d-flex">--}}
+{{--                                                                <span class="fw-bolder text-gray-800 ps-3">Charts</span>--}}
+{{--                                                            </div>--}}
+{{--                                                            <!--end::Content-->--}}
+{{--                                                        </div>--}}
+{{--                                                        <!--end::Item-->--}}
                                                         <!--begin::Item-->
                                                         <div class="timeline-item">
                                                             <!--begin::Label-->
