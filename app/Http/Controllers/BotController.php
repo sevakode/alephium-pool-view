@@ -41,19 +41,19 @@ class BotController extends Controller
 
                     if ($balance) {
 
-                        $balance = "Баланс на кошельке: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
+                        $balance = "Wallet balance: " . $balance['ALPH'] . " ALPH 🅰️ ≈ " . $balance['USD'] . " USD 💵 ";
 
                         $stats = $this->stats($message['text']);
                         if ($stats) {
-                            $text = "Хешрейт за 24 часа: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'];
+                            $text = "Hashrate for 24 hours: " . $stats['day'] . "\nХешрейт за 1 час: " . $stats['hour'];
                         } else {
-                            $text = 'Воркер не в сети';
+                            $text = 'Worker is offline';
                         }
 
-                        $text = $balance . "\n\n" . $text . "\n\nВсе операции: https://explorer.alephium.org/#/addresses/" . $message['text'];
+                        $text = $balance . "\n\n" . $text . "\n\nAll operations: https://explorer.alephium.org/#/addresses/" . $message['text'];
 
                     } else {
-                        $text = "Не найдено";
+                        $text = "Not found";
                     }
 
                 }
@@ -66,7 +66,7 @@ class BotController extends Controller
                         $text=$this->statWorker($farmer);
                         $telegram->sendMessage($message['from']['id'], $text);
                     } else {
-                        $telegram->sendMessage($message['from']['id'], "Я тебя не понимаю");
+                        $telegram->sendMessage($message['from']['id'], "I do not understand you");
                     }
                 } else {
                     $shares = Share::where('worker', $message['text'])->first();
@@ -75,10 +75,10 @@ class BotController extends Controller
                         $farmer->telegram_id = $message['from']['id'];
                         $farmer->address = $message['text'];
                         $farmer->save();
-                        $telegram->sendMessage($message['from']['id'], "Кошелек добавлен");
+                        $telegram->sendMessage($message['from']['id'], "Wallet added");
 
                     } else {
-                        $telegram->sendMessage($message['from']['id'], "Введите адрес кошелька");
+                        $telegram->sendMessage($message['from']['id'], "Enter wallet address");
                     }
                 }
 
