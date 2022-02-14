@@ -119,7 +119,10 @@ class BotController extends Controller
             $blocksDay = \App\Models\Block::whereBetween('created_date', [$date, $date_to])->get();
             $blocksHour = $blocksDay->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
 
-            $shares = Share::whereBetween('created_date', [$date, $date_to])->get();
+            $shares = Share::select('worker','pool_diff','created_date')->whereBetween('created_date', [$date, $date_to])->get();
+
+            $lists=$shares->unique('worker');
+
             $sharesHours = $shares->where('created_date', '>=', $date_fromHour->format('Y-m-d H:i:s.uP'));
             $hashrate = $shares->sum('pool_diff');
             $hashrateDay = $hashrate * 16 * pow(2, 30) / 86400;
@@ -131,7 +134,8 @@ class BotController extends Controller
                     'day' => ['sum' => '', 'count' => $blocksDay->count()],
                     'hour' => ['sum' => '', 'count' => $blocksHour->count()],
                 ],
-                'blockHour' => $blocksHour
+                'blockHour' => $blocksHour,
+                'lists'=>$lists
             ];
             Cache::store()->put('stats', $stats, 120); // 2 Minutes
         }
