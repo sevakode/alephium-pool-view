@@ -1,66 +1,52 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Alephium Mining Pool
 
-## About Laravel
+This project is an Alephium mining pool implementation, designed to provide a robust and efficient mining solution for the Alephium blockchain. The mining pool allows miners to contribute their computing power and share the rewards based on their contribution.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- User-friendly web interface for monitoring mining statistics and performance
+- Telegram bot integration for easy interaction and notifications
+- Real-time updates on pool hashrate, miner hashrate, and rewards
+- Detailed statistics and charts for analyzing mining performance
+- Secure and efficient payment system for distributing rewards to miners
+- Customizable pool settings and configurations
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
+- PHP Laravel framework for backend development
+- MySQL database for storing miner and pool data
+- Alephium Node.js API for interacting with the Alephium blockchain
+- Telegram Bot API for integrating the Telegram bot functionality
+- Bootstrap and custom CSS for frontend styling
+- jQuery and Ajax for dynamic updates and interactivity
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Implementation Highlights
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Farmer Controller**: The `FarmerController` handles the main functionality of the mining pool. It retrieves pool statistics, miner balances, and hashrate information using the `BotController` and renders the appropriate views.
 
-## Laravel Sponsors
+- **Bot Controller**: The `BotController` manages the Telegram bot integration. It handles incoming messages, processes commands, and sends notifications to miners. It interacts with the Alephium Node.js API to retrieve blockchain data and update miner statistics.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **Node Service**: The `NodeService` is responsible for communicating with the Alephium Node.js API. It provides methods for retrieving miner balances, UTXOs, and hashrate information.
 
-### Premium Partners
+- **Telegram Service**: The `TelegramService` handles the communication with the Telegram Bot API. It sends messages and notifications to miners and processes incoming commands from the Telegram bot.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+- **Database Models**: The project utilizes Laravel's Eloquent ORM for database management. The `Farmer` model represents miners and stores their addresses and Telegram IDs. The `Share` model represents the shares submitted by miners and is used for calculating rewards.
 
-## Contributing
+- **Frontend**: The web interface is built using Laravel's Blade templating engine. It utilizes Bootstrap for responsive design and custom CSS for styling. jQuery and Ajax are used for dynamic updates and interactivity, providing a seamless user experience.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Setup and Installation
 
-## Code of Conduct
+1. Clone the repository: `git clone https://github.com/sevakode/alephium-pool-view.git`
+2. Install dependencies: `composer install`
+3. Configure the database connection in `.env` file
+4. Run database migrations: `php artisan migrate`
+5. Start the development server: `php artisan serve`
+6. Access the mining pool in your web browser at `http://localhost:8000`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Future Enhancements
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Integration with additional payment gateways for seamless reward distribution
+- Enhanced security measures to protect against attacks and unauthorized access
+- Multilingual support for a wider audience
+- Mobile app development for convenient access to mining statistics and notifications
